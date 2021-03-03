@@ -12,9 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LogInApp">
+        <activity android:name=".GoogleMap"></activity>
+
         <meta-data
-            android:name='com.google.android.geo.API_KEY'
-            android:value="AIzaSyCQZB7Tr_xDM_9yDAvg5PNfYnhbJjtsnDc"/>
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCQZB7Tr_xDM_9yDAvg5PNfYnhbJjtsnDc" />
+
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>
@@ -30,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
