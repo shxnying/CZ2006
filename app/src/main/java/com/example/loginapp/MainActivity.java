@@ -42,4 +42,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), GoogleMap.class));
         finish();
     }
+
+    public void chatbot (View view) {
+        Intent chatbot = new Intent(this, ChatbotActivity.class);
+        startActivity(chatbot);
+    }
 }
