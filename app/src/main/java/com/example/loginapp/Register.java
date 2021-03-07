@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
     EditText mFullName, mEmail, mPassword, mConfirmPassword;
@@ -51,6 +52,7 @@ public class Register extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 String confirmpassword = mConfirmPassword.getText().toString().trim();
+                String fullName = mFullName.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email field must not be empty.");
@@ -75,16 +77,27 @@ public class Register extends AppCompatActivity {
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(Register.this, "User Successfully Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        }else{
-                            Toast.makeText(Register.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            User user = new User(fullName, email);
+
+                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(Register.this, "User Successfully Created.", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    } else {
+                                        Toast.makeText(Register.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                }
+                            });
                         }
+
+
                     }
                 });
-
             }
         });
 
