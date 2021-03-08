@@ -15,9 +15,7 @@
         <activity android:name=".ChatbotActivity"></activity>
         <activity android:name=".GoogleMap" />
 
-		<meta-data
-    android:name="com.google.android.geo.API_KEY"
-    android:value="${AIzaSyDZqVY8nwoiq3md3KV-MNKN4qWp7cfV0NY}" />
+
 
         <activity android:name=".Login" />
         <activity android:name=".Register">
