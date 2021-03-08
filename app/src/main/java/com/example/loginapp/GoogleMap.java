@@ -19,11 +19,19 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 public class GoogleMap extends AppCompatActivity {
     //Initialize variable
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
+    // Initialize the SDK
+    Places.initialize(getApplicationContext(), apiKey);
+
+    // Create a new PlacesClient instance
+    PlacesClient placesClient = Places.createClient(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
