@@ -15,9 +15,9 @@
         <activity android:name=".ChatbotActivity"></activity>
         <activity android:name=".GoogleMap" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCQZB7Tr_xDM_9yDAvg5PNfYnhbJjtsnDc" />
+		<meta-data
+    android:name="com.google.android.geo.API_KEY"
+    android:value="${AIzaSyDZqVY8nwoiq3md3KV-MNKN4qWp7cfV0NY}" />
 
         <activity android:name=".Login" />
         <activity android:name=".Register">
@@ -34,7 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
