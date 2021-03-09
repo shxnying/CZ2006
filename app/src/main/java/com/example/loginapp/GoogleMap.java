@@ -21,22 +21,30 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.maps.android.SphericalUtil;
+import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
+import com.google.maps.android.data.kml.KmlLayer;
 
 import org.json.JSONException;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class GoogleMap extends AppCompatActivity {
     //Initialize variable
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
+    private static List<Marker> markers = new ArrayList<>();
     private com.google.android.gms.maps.GoogleMap mMap;
 
     @Override
@@ -76,13 +84,19 @@ public class GoogleMap extends AppCompatActivity {
                         @Override
                         public void onMapReady(com.google.android.gms.maps.GoogleMap googleMap) {
                             mMap = googleMap;
-                            GeoJsonLayer layer = null;
+                            KmlLayer layer = null;
                             try{
-                                layer = new GeoJsonLayer(mMap, R.raw.chasclinicsgeojson,getApplicationContext());
+                                layer = new KmlLayer(mMap, R.raw.chasclinicskml,getApplicationContext());
                                 layer.addLayerToMap();
+                                layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                                    @Override
+                                    public void onFeatureClick(Feature feature) {
+                                        Log.i("KML", "Feature clicked: "+ feature.getId());
+                                    }
+                                });
                             } catch (IOException e){
                                 e.printStackTrace();
-                            } catch (JSONException e){
+                            } catch (XmlPullParserException e) {
                                 e.printStackTrace();
                             }
 
@@ -111,4 +125,14 @@ public class GoogleMap extends AppCompatActivity {
             }
         }
     }
+
+    public void revealMarkers (GoogleMap mMap, LatLng LL){
+        for(int i =0; i<markers.size(); i++){
+            if(SphericalUtil.computeDistanceBetween(LL, markers.get(i).getPosition())<2400){
+                markers.get(i).setVisible(true);
+            }
+
+        }
+    }
+
 }
