@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -59,12 +60,12 @@ public class GoogleMap extends AppCompatActivity {
         client = LocationServices.getFusedLocationProviderClient(this);
 
         // Check permission
-        if(ActivityCompat.checkSelfPermission(GoogleMap.this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(GoogleMap.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //when permission granted
             //Call method
             getCurrentLocation();
 
-        }else{
+        } else {
             //When permission denied
             //Request permission
             ActivityCompat.requestPermissions(GoogleMap.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
@@ -78,12 +79,21 @@ public class GoogleMap extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 //When success
-                if(location != null){
+                if (location != null) {
                     //Sync map
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(com.google.android.gms.maps.GoogleMap googleMap) {
                             mMap = googleMap;
+                            if (ActivityCompat.checkSelfPermission(GoogleMap.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(GoogleMap.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                    requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},44);
+                                }
+                                return;
+                            }
+                            mMap.setMyLocationEnabled(true);
                             KmlLayer layer = null;
                             try{
                                 layer = new KmlLayer(mMap, R.raw.chasclinicskml,getApplicationContext());
