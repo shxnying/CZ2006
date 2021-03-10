@@ -101,7 +101,16 @@ public class GoogleMap extends AppCompatActivity {
                                 layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                                     @Override
                                     public void onFeatureClick(Feature feature) {
-                                        Log.i("KML", "Feature clicked: "+ feature.getId());
+                                        Log.i("KML", "Feature clicked: "+ feature.getProperty("descriptiongi"));
+                                    }
+                                });
+                                KmlLayer layer2 = null;
+                                layer2 = new KmlLayer(mMap, R.raw.pharmacylocationskml,getApplicationContext());
+                                layer2.addLayerToMap();
+                                layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                                    @Override
+                                    public void onFeatureClick(Feature feature) {
+                                        Log.i("KML", "Feature clicked: "+ feature.getProperty("description"));
                                     }
                                 });
                             } catch (IOException e){
@@ -115,7 +124,7 @@ public class GoogleMap extends AppCompatActivity {
                             //Create marker options
                             MarkerOptions options = new MarkerOptions().position(latlng).title("I am here");
                             //Zoom map
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,10));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,15));
                             //add marker on map
                             googleMap.addMarker(options);
                         }
