@@ -8,25 +8,30 @@
     tools:context=".ChatbotActivity">
 
     <EditText
+        android:imeActionId="4"
+        android:imeOptions="actionSend"
         android:id="@+id/userInput"
-        android:layout_width="393dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
         android:background="@drawable/bg_edit_text"
-        android:elevation="10dp"
+        android:elevation="3dp"
         android:hint="Please enter your symptoms one by one"
-        android:padding="8dp"
+        android:padding="12dp"
         android:textColor="#fff"
         android:textColorHint="#fff"
-        android:textSize="18dp" />
+        android:textSize="18sp"
+        android:inputType="text"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/conversation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/userInput" />
+        android:layout_height="676dp"
+        android:layout_alignEnd="@+id/userInput"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-8dp"
+        android:layout_marginBottom="55dp" />
+
 
 </RelativeLayout>
