@@ -47,4 +47,8 @@ public class MainActivity extends AppCompatActivity {
         Intent chatbot = new Intent(this, ChatbotActivity.class);
         startActivity(chatbot);
     }
+    public void listView (View view){
+        startActivity(new Intent(getApplicationContext(), ListofClinics.class));
+        finish();
+    }
 }
