@@ -7,6 +7,15 @@ public class User {
     public User() {
 
     }
+
+
+    public String getUserName() {
+        return fullName;
+    }
+    public String getUserEmail(){
+        return email;
+    }
+
     public User(String fullName, String email) {
         this.fullName = fullName;
         this.email = email;
