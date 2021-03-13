@@ -16,6 +16,7 @@
         <activity android:name=".ListofClinics"
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".ChatbotActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ClinicPage"/>
         <activity android:name=".AdminPage"/>
         <activity android:name=".GoogleMap" />
 
