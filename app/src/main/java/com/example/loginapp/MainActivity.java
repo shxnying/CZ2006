@@ -51,4 +51,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), ListofClinics.class));
         finish();
     }
+
+    public void adminuserlist(View view) {
+        startActivity(new Intent(getApplicationContext(), AdminPage.class));
+        finish();
+    }
 }

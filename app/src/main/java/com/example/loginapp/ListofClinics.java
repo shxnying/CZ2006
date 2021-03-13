@@ -3,6 +3,7 @@ package com.example.loginapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -58,6 +59,11 @@ public class ListofClinics extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Toast.makeText(ListofClinics.this, "clicked item"+i+" "+arrayList.get(i).toString(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ListofClinics.this,ClinicPage.class);
+                intent.putExtra("CLINIC_NAME", arrayList.get(i));
+                //TODO send intents for image, phone and address
+                //TODO and your queue number, current queue number
+                startActivity(intent);
             }
         });
 
