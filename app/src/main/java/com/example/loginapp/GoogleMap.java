@@ -62,7 +62,7 @@ public class GoogleMap extends AppCompatActivity {
         setContentView(R.layout.activity_google_map);
 
         //assign variable
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
+        //supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
 
         //initialize fused location
         client = LocationServices.getFusedLocationProviderClient(this);
