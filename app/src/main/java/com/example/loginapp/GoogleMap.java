@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.internal.location.zzz;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -27,7 +28,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.maps.android.SphericalUtil;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
@@ -38,6 +44,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,6 +54,7 @@ public class GoogleMap extends AppCompatActivity {
     FusedLocationProviderClient client;
     private static List<Marker> markers = new ArrayList<>();
     private com.google.android.gms.maps.GoogleMap mMap;
+    //private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,31 @@ public class GoogleMap extends AppCompatActivity {
 
         //initialize fused location
         client = LocationServices.getFusedLocationProviderClient(this);
+       /* //initialize Places SDK
+        Places.initialize(getApplicationContext(),"AIzaSyCQZB7Tr_xDM_9yDAvg5PNfYnhbJjtsnDc");
+        //Create new Places client instance
+        PlacesClient placesClient = Places.createClient(this);
+        //Initialize autocompletesupportfragment
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteFragment.setTypeFilter(TypeFilter.ESTABLISHMENT);
+        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(new LatLng(1.3521,103.8198), new LatLng(1.3540,10390)));
+        autocompleteFragment.setCountries("SG");
+        //specify types of places data to return
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID,Place.Field.NAME));
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                //Get info on selected place
+                Log.i(TAG, "Place: "+place.getName()+", "+place.getId());
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                //Error handling
+                Log.i(TAG, "An error occurred: "+status);
+
+            }
+        });*/
 
         // Check permission
         if (ActivityCompat.checkSelfPermission(GoogleMap.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
