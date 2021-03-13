@@ -1,5 +1,6 @@
 package com.example.loginapp;
 
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,8 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 
@@ -25,6 +35,9 @@ public class AdminPage extends AppCompatActivity {
 
     AdminController mAdminController;
     ListView listView;
+    FirebaseAuth fAuth;
+    String name="ff";
+
 
 
 
@@ -41,14 +54,43 @@ public class AdminPage extends AppCompatActivity {
 
 
         //TODO link with the rest
-        //
-        String[] username = {"Russell","Jon","Xuanhui"};
-        String[] useremail = {"Russell@gmail.com","Jon@gmail.com","Xuanhui@gmail.com"};
 
-        for(int i=0;i<username.length;i++){
-            User.add(new User(useremail[i],username[i]));
-        }
+        //to fetch all the users of firebase Auth app
+//        fAuth = FirebaseAuth.getInstance();
+//        String email = fAuth.getCurrentUser().getEmail();
+//        String name = fAuth.getCurrentUser().getDisplayName();
+//        User.add(new User(email, name));
+
+        // Start listing users from the beginning, 1000 at a time.
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child("Users");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    name = ds.child("email").getValue(String.class);
+                    Log.d("TAG", name+"fff");
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        usersdRef.addListenerForSingleValueEvent(eventListener);
+
+
+
+
         //
+//        String[] username = {"Russell","Jon","Xuanhui"};
+//        String[] useremail = {"Russell@gmail.com","Jon@gmail.com","Xuanhui@gmail.com"};
+//
+//        for(int i=0;i<username.length;i++){
+//            User.add(new User(useremail[i],username[i]));
+//        }
+        //
+        User.add(new User());
 
 
         mAdminController = new AdminController(this,User);
