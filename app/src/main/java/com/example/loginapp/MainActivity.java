@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void MapView (View view){
         startActivity(new Intent(getApplicationContext(), GoogleMap.class));
+        // insert on button click, start queueActivity
+        // startActivity(new Intent(getApplicationContexxt(), QueueController.class));
         finish();
     }
 
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void listView (View view){
         startActivity(new Intent(getApplicationContext(), ListofClinics.class));
+        // insert on button click, start queueActivity
         finish();
     }
 
@@ -56,4 +59,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), AdminPage.class));
         finish();
     }
+
+    public void currentAppointment (View view){
+
+    }
+
+
 }
