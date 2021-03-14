@@ -148,7 +148,9 @@ public class ClinicPage extends AppCompatActivity {
     private void sendConfirmationEmail() {
         String senderemail = "cz2006sickgowhere@gmail.com";
         String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        //String userName = FirebaseAuth.getInstance().getCurrentUser().get;
         String recipientemail = userEmail;// fetch user's email
+
 
         final ProgressDialog dialog = new ProgressDialog(ClinicPage.this);
         dialog.setTitle("Comfirming your Booking");
@@ -160,7 +162,7 @@ public class ClinicPage extends AppCompatActivity {
                     //ToDO GET the booking details for the confirmation email.
                     GMailSender sender = new GMailSender("cz2006sickgowhere@gmail.com", "123456sickgowhere");
                     sender.sendMail("Booking Confirmation",
-                            "This is your Confirmation email, you queue no is 7......",
+                            "Hello " +"\nThis is your Confirmation email, you queue no is 7......",
                             senderemail, recipientemail);
                     dialog.dismiss();
 
