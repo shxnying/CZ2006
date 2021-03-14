@@ -2,7 +2,7 @@ package com.example.loginapp;
 
 public class User {
 
-    public String fullName,email;
+    public String fullName,email,uid;
 
     public User() {
 
@@ -16,8 +16,15 @@ public class User {
         return email;
     }
 
+    public User(String fullName, String email, String uid) {
+        this.fullName = fullName;
+        this.email = email;
+        this.uid = uid;
+    }
+
     public User(String fullName, String email) {
         this.fullName = fullName;
         this.email = email;
     }
 }
+
