@@ -90,7 +90,9 @@ public class AdminPage extends AppCompatActivity {
 //            User.add(new User(useremail[i],username[i]));
 //        }
         //
-        User.add(new User());
+
+        //TODO sorry i hide this first
+        //User.add(new User());
 
 
         mAdminController = new AdminController(this,User);

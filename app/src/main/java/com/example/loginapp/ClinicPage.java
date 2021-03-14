@@ -1,17 +1,29 @@
 package com.example.loginapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ClinicPage extends AppCompatActivity {
 
@@ -107,6 +119,10 @@ public class ClinicPage extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //TODO add to database
+                sendConfirmationEmail();
+                Log.e("Email sent", "Email sent to user");
+
+
             }
         });
 
@@ -124,6 +140,36 @@ public class ClinicPage extends AppCompatActivity {
 
         // show it
         alertDialog.show();
+
+    }
+
+
+    //Send Confirmation email to user
+    private void sendConfirmationEmail() {
+        String senderemail = "cz2006sickgowhere@gmail.com";
+        String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String recipientemail = userEmail;// fetch user's email
+
+        final ProgressDialog dialog = new ProgressDialog(ClinicPage.this);
+        dialog.setTitle("Comfirming your Booking");
+        dialog.setMessage("Please wait");
+        dialog.show();
+        Thread sender = new Thread(new Runnable(){
+            public void run() {
+                try {
+                    //ToDO GET the booking details for the confirmation email.
+                    GMailSender sender = new GMailSender("cz2006sickgowhere@gmail.com", "123456sickgowhere");
+                    sender.sendMail("Booking Confirmation",
+                            "This is your Confirmation email, you queue no is 7......",
+                            senderemail, recipientemail);
+                    dialog.dismiss();
+
+                } catch (Exception e) {
+                    Log.e("mylog", "Error: " + e.getMessage());
+                }
+            }
+        });
+        sender.start();
 
     }
 
