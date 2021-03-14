@@ -59,10 +59,30 @@ public class AdminController extends ArrayAdapter<User> implements Filterable {
         return Usersfiltered.get(position);
     }
 
+//    @Override
+//    public long getItemId(int position) {
+//        return position;
+//    }
+
     @Override
     public long getItemId(int position) {
-        return position;
+
+        int itemID;
+
+        // orig will be null only if we haven't filtered yet:
+        if (UsersTotal == null)
+        {
+            itemID = position;
+        }
+        else
+        {
+            itemID = UsersTotal.indexOf(Usersfiltered.get(position));
+        }
+        return itemID;
     }
+
+
+
 
 
 
@@ -81,6 +101,7 @@ public class AdminController extends ArrayAdapter<User> implements Filterable {
         return convertView;
 
     }
+
 
 
 
