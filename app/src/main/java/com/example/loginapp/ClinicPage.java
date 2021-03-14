@@ -57,14 +57,11 @@ public class ClinicPage extends AppCompatActivity {
         mTextView_addressClinic = (TextView) findViewById(R.id.textview_addressClinic);
 
         mTextView_nameClinic.setText("Name of Clinic:   " + name);
-        mTextView_openingHoursClinic.setText("Opening Hours:   "+ "8am - 8pm");
+        mTextView_openingHoursClinic.setText("Opening Hours:   " + "8am - 8pm");
 
         //TODO once you get the info, change the hardcode
         mTextView_addressClinic.setText("Clinic Address:   " + "Adrian road 123456");
-        mTextView_phoneClinic.setText("Phone Number:   "+ "12345678");
-
-
-
+        mTextView_phoneClinic.setText("Phone Number:   " + "12345678");
 
 
         mbutton_queue.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +75,7 @@ public class ClinicPage extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -89,9 +87,6 @@ public class ClinicPage extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
-
-
 
 
     public void showfilterselection() {
@@ -108,8 +103,6 @@ public class ClinicPage extends AppCompatActivity {
         mTextview_estimatedwaitingtime.setText("30" + " mins");
 
 
-
-
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context);
 
@@ -119,10 +112,9 @@ public class ClinicPage extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //TODO add to database
+
                 sendConfirmationEmail();
                 Log.e("Email sent", "Email sent to user");
-
-
             }
         });
 
@@ -143,14 +135,11 @@ public class ClinicPage extends AppCompatActivity {
 
     }
 
-
     //Send Confirmation email to user
     private void sendConfirmationEmail() {
         String senderemail = "cz2006sickgowhere@gmail.com";
         String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        //String userName = FirebaseAuth.getInstance().getCurrentUser().get;
         String recipientemail = userEmail;// fetch user's email
-
 
         final ProgressDialog dialog = new ProgressDialog(ClinicPage.this);
         dialog.setTitle("Comfirming your Booking");
@@ -162,7 +151,7 @@ public class ClinicPage extends AppCompatActivity {
                     //ToDO GET the booking details for the confirmation email.
                     GMailSender sender = new GMailSender("cz2006sickgowhere@gmail.com", "123456sickgowhere");
                     sender.sendMail("Booking Confirmation",
-                            "Hello " +"\nThis is your Confirmation email, you queue no is 7......",
+                            "This is your Confirmation email, you queue no is 7......",
                             senderemail, recipientemail);
                     dialog.dismiss();
 
@@ -174,14 +163,7 @@ public class ClinicPage extends AppCompatActivity {
         sender.start();
 
     }
-
 }
-
-
-
-
-
-
 
 
 

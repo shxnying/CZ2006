@@ -44,6 +44,11 @@ public class AdminController extends ArrayAdapter<User> implements Filterable {
     }
 
 
+
+
+
+
+
     @Override
     public int getCount() {
         return Usersfiltered.size();
@@ -71,8 +76,8 @@ public class AdminController extends ArrayAdapter<User> implements Filterable {
         }
 
         ((TextView) convertView.findViewById(R.id.textView_userEmail)).setText(getItem(position).getUserEmail());
+        //
         ((TextView) convertView.findViewById(R.id.textView_userName)).setText(getItem(position).getFullName());
-
         return convertView;
 
     }
