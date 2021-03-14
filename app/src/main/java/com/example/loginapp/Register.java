@@ -19,12 +19,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class Register extends AppCompatActivity {
     EditText mFullName, mEmail, mPassword, mConfirmPassword;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,8 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(fullName, email);
+
+                            User user = new User(fullName, email, 0, null); // Set default to 0 and null
 
                             FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -87,6 +90,7 @@ public class Register extends AppCompatActivity {
                                         Toast.makeText(Register.this, "User Successfully Created.", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.VISIBLE);
                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
                                     } else {
                                         Toast.makeText(Register.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
