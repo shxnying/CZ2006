@@ -24,10 +24,6 @@ import java.util.Map;
 
 public class User {
 
-<<<<<<< HEAD
-=======
-    public String fullName,email,uid;
->>>>>>> 3da5bbd151700b05650feccf8823e2daf59c5368
 
     public String fullName;
     public String email;
@@ -63,25 +59,12 @@ public class User {
         return fullName;
     }
 
-    public String getUserEmail(){
+    public String getUserEmail() {
         return email;
     }
 
-<<<<<<< HEAD
     public void setFullName(String fullName) {
         this.fullName = fullName;
-=======
-    public User(String fullName, String email, String uid) {
-        this.fullName = fullName;
-        this.email = email;
-        this.uid = uid;
->>>>>>> 3da5bbd151700b05650feccf8823e2daf59c5368
-    }
-
-    public User(String fullName, String email) {
-        this.fullName = fullName;
-        this.email = email;
     }
 
 }
-
