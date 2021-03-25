@@ -132,6 +132,11 @@ public class AdminPage extends AppCompatActivity {
 
         SearchView searchView = (SearchView) menuItem.getActionView();
 
+        MenuItem alph = menu.findItem(R.id.arrangebyalphabetical);
+        alph.setVisible(false);
+        MenuItem dist = menu.findItem(R.id.arrangedist);
+        dist.setVisible(false);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
