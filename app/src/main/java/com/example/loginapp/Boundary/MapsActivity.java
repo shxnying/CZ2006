@@ -144,6 +144,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onBackPressed() {
+
+//            Intent myIntent = new Intent(getApplicationContext(), NearestClinic.class);
+//            startActivityForResult(myIntent, 0);
+//            super.onBackPressed();
+
         Toast.makeText(getApplicationContext(), "Long press on back button to exit app!", Toast.LENGTH_SHORT).show();
     }
 
@@ -199,4 +204,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
     }
+
 }
