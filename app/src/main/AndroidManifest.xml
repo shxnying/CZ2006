@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.loginapp">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,47 +9,82 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LogInApp">
-        <activity android:name=".MapsActivity"></activity>
         <activity
-            android:name=".ListofClinics"
-            android:parentActivityName=".MainActivity" />
+            android:name=".Control.PharmacyPage"
+            android:label="Pharmacy">
+        </activity>
         <activity
-            android:name=".ChatbotActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".ClinicPage" />
-        <activity android:name=".AdminPage" />
-        <activity android:name=".mainactivityAdmin" />
-        <activity android:name=".NearestClinic" />
+            android:name=".Boundary.Clinic_admin_page"
+            android:label="Clinic Admin"
+            />
+        <activity
+            android:name=".Boundary.ListofClinics"
+            android:label="Clinic List"
+            />
+        <activity
+            android:name=".Boundary.ListofPharmacies"
+            android:label="Pharmacy List"
+            />
+
+        <activity
+            android:name=".Boundary.ChatbotActivity"
+            android:parentActivityName=".Boundary.MainActivity"
+            android:label="Chatbot"
+            />
+        <activity
+            android:name=".Control.ClinicPage"
+            android:label="Selected Clinic"
+            />
+
+        <activity
+            android:name=".Boundary.MapsActivity"
+            android:label="Nearest Clinics"
+            />
+        <activity
+            android:name=".Boundary.MapsActivityPharmacy"
+            android:label="Nearest Pharmacies"
+            />
+        <activity
+            android:name=".Boundary.mainactivityAdmin"
+            android:label="Admin"
+            />
+
+
+        <activity android:name=".Boundary.DisableAdminPage"
+            android:label="Disable Users"
+            >
+        </activity>
+
+        <activity android:name=".Boundary.EnableAdminPage"
+            android:label="Enable Users"/>
+
+
+
+        <activity
+            android:name=".Boundary.Login"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Boundary.Register"></activity>
+        <activity android:name=".Boundary.MainActivity"></activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCQZB7Tr_xDM_9yDAvg5PNfYnhbJjtsnDc" />
-
-        <activity android:name=".Login" />
-        <activity android:name=".Register">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <!--meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDZqVY8nwoiq3md3KV-MNKN4qWp7cfV0NY" /-->
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
