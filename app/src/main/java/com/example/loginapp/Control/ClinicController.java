@@ -25,9 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-//TODO
-//load data: arraylist<admin>
-//save data(adminlist)
+
 
 public class ClinicController extends ArrayAdapter<Clinic> implements Filterable {
 
@@ -164,21 +162,7 @@ public class ClinicController extends ArrayAdapter<Clinic> implements Filterable
         };
         return filter;
     }
-public static ArrayList<Clinic> passMeAllData(){ return FIREBASEDATA;}
-/*public  ArrayList<Clinic> getAllDocs(){
-        clinicRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                ArrayList<Clinic> CLINICDATA = null;
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        CLINICDATA = (ArrayList<Clinic>) document.get("clinic");
-                    }
-                }
-                return CLINICDATA;
-            }
-        });
-}*/
+
 
 }
 
