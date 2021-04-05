@@ -41,10 +41,8 @@ public class ClinicController extends ArrayAdapter<Clinic> implements Filterable
 
 
     public ClinicController(Activity context, ArrayList<Clinic> Clinics) {
-        // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
-        // the second argument is used when the ArrayAdapter is populating a single TextView.
-        // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
-        // going to use this second argument, so it can be any value. Here, we used 0.
+        //initialize the ArrayAdapter's internal storage for the context and the list.
+
         super(context, 0, Clinics);
 
 
@@ -93,7 +91,7 @@ public class ClinicController extends ArrayAdapter<Clinic> implements Filterable
     }
 
 
-
+//fill textview with the username
     @Override
     public View getView (final int position,
                          View convertView,
@@ -116,7 +114,7 @@ public class ClinicController extends ArrayAdapter<Clinic> implements Filterable
 
 
 
-
+//implement filter logic
 
     @Override
     public Filter getFilter() {
